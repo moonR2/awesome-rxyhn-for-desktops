@@ -11,7 +11,7 @@ local keyboard_layout = require("keyboard_layout")
 local kbdcfg = keyboard_layout.kbdcfg({type = "tui"})
 
 kbdcfg.add_primary_layout("English", "US", "us")
-kbdcfg.add_primary_layout("Spanish", "es", "latam")
+kbdcfg.add_primary_layout("Spanish", "ES", "latam")
 
 kbdcfg.bind()
 
