@@ -105,9 +105,6 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "focus right", group = "client" }),
 
 	-- Resize focused client
-	awful.key({ mod, ctrl }, "k", function(c)
-		helpers.resize_client(client.focus, "up")
-	end, { description = "resize to the up", group = "client" }),
 	awful.key({ mod, ctrl }, "l", function(c)
 		helpers.resize_client(client.focus, "right")
 	end, { description = "resize to the right", group = "client" }),
@@ -117,10 +114,10 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod, ctrl }, "Down", function(c)
 		helpers.resize_client(client.focus, "down")
 	end, { description = "resize to the down", group = "client" }),
-	awful.key({ mod, ctrl }, "Left", function(c)
+	awful.key({ mod, ctrl }, "h", function(c)
 		helpers.resize_client(client.focus, "left")
 	end, { description = "resize to the left", group = "client" }),
-	awful.key({ mod, ctrl }, "Right", function(c)
+	awful.key({ mod, ctrl }, "l", function(c)
 		helpers.resize_client(client.focus, "right")
 	end, { description = "resize to the right", group = "client" }),
 
@@ -131,9 +128,6 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod, "Control" }, "k", function()
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
-	awful.key({ mod }, "o", function()
-		awful.screen.move_to_screen()
-	end, { description = "move to screen", group = "screen" }),
 
 
 	---- Bling
@@ -289,6 +283,10 @@ client.connect_signal("request::default_keybindings", function()
 			c.maximized_horizontal = not c.maximized_horizontal
 			c:raise()
 		end, { description = "(un)maximize horizontally", group = "client" }),
+		-- move to screen
+		awful.key({mod}, "o", function(c) 
+			c:move_to_screen() 
+		end, {description = "move to screen", group = "client"}),
 
 		-- Minimize windows
 		awful.key({ mod }, "n", function(c)
