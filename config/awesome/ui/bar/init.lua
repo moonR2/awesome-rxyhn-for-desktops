@@ -6,6 +6,14 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local clickable_container = require("ui.widgets.clickable-container")
+local keyboard_layout = require("keyboard_layout")
+
+local kbdcfg = keyboard_layout.kbdcfg({type = "tui"})
+
+kbdcfg.add_primary_layout("English", "US", "us")
+kbdcfg.add_primary_layout("Spanish", "es", "latam")
+
+kbdcfg.bind()
 
 awful.screen.connect_for_each_screen(function(s)
 	-- Clock
@@ -68,6 +76,14 @@ awful.screen.connect_for_each_screen(function(s)
 		horizontal = true,
 		screen = "primary",
 		widget = wibox.widget.systray,
+	})
+
+	-- keyboard layout
+	s.keyboard_layout = wibox.widget({
+		{
+			widget = kbdcfg.widget,
+		},
+		widget = clickable_container,
 	})
 
 	-- Widgets
@@ -153,6 +169,7 @@ awful.screen.connect_for_each_screen(function(s)
 						widget = wibox.container.margin,
 					},
 					s.tray_toggler,
+					s.keyboard_layout,
 					s.network,
 					s.github_activity,
 					control_center_toggle,

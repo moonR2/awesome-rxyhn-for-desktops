@@ -9,6 +9,14 @@ local playerctl = bling.signal.playerctl.lib()
 local machi = require("module.layout-machi")
 local helpers = require("helpers")
 local apps = require("configuration.apps")
+local keyboard_layout = require("keyboard_layout")
+
+local kbdcfg = keyboard_layout.kbdcfg({type = "tui"})
+
+kbdcfg.add_primary_layout("English", "US", "us")
+kbdcfg.add_primary_layout("Spanish", "es", "latam")
+
+kbdcfg.bind()
 
 -- Make key easier to call
 ----------------------------
@@ -44,7 +52,7 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "open file manager", group = "app" }),
 
 	-- Web browser
-	awful.key({ mod, shift }, "w", function()
+	awful.key({ mod }, "b", function()
 		awful.spawn(apps.default.web_browser)
 	end, { description = "open web browser", group = "app" }),
 
@@ -100,16 +108,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod, ctrl }, "k", function(c)
 		helpers.resize_client(client.focus, "up")
 	end, { description = "resize to the up", group = "client" }),
-	awful.key({ mod, ctrl }, "j", function(c)
-		helpers.resize_client(client.focus, "down")
-	end, { description = "resize to the down", group = "client" }),
-	awful.key({ mod, ctrl }, "h", function(c)
-		helpers.resize_client(client.focus, "left")
-	end, { description = "resize to the left", group = "client" }),
 	awful.key({ mod, ctrl }, "l", function(c)
 		helpers.resize_client(client.focus, "right")
 	end, { description = "resize to the right", group = "client" }),
-
 	awful.key({ mod, ctrl }, "Up", function(c)
 		helpers.resize_client(client.focus, "up")
 	end, { description = "resize to the up", group = "client" }),
@@ -122,6 +123,18 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod, ctrl }, "Right", function(c)
 		helpers.resize_client(client.focus, "right")
 	end, { description = "resize to the right", group = "client" }),
+
+	-- Screen
+	awful.key({ mod, "Control" }, "j", function()
+		awful.screen.focus_relative(1)
+	end, { description = "focus the next screen", group = "screen" }),
+	awful.key({ mod, "Control" }, "k", function()
+		awful.screen.focus_relative(-1)
+	end, { description = "focus the previous screen", group = "screen" }),
+	awful.key({ mod }, "o", function()
+		awful.screen.move_to_screen()
+	end, { description = "move to screen", group = "screen" }),
+
 
 	---- Bling
 	-------------
@@ -371,6 +384,10 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod }, "-", function()
 		helpers.resize_gaps(-5)
 	end, { description = "subtract gaps", group = "layout" }),
+	
+	-- keyboard layout
+	awful.key({"Shift"}, "Shift_R", function () kbdcfg.switch_next() end),
+	awful.key({mod}, "Shift_R", function () kbdcfg.switch_next() end)
 })
 
 -- Move through workspaces

@@ -14,7 +14,7 @@ return {
 		-- Default code editor
 		code_editor = "code",
 		-- Default web browser
-		web_browser = "firefox",
+		web_browser = "brave",
 		-- Default file manager
 		file_manager = "nautilus",
 		-- Default network manager
