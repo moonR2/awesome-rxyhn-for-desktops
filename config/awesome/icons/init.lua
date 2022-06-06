@@ -14,9 +14,6 @@ return {
 	disk = dir .. "disk.svg",
 	power = dir .. "power.svg",
 	memory = dir .. "memory.svg",
-	battery = dir .. "battery.svg",
-	battery_low = dir .. "battery-low.svg",
-	charging = dir .. "charging.svg",
 
 	--- Previous and Next icon
 	previous = dir .. "go-previous.svg",

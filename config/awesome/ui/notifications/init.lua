@@ -1,4 +1,3 @@
-require("ui.notifications.battery")
 require("ui.notifications.brightness")
 require("ui.notifications.layoutlist")
 require("ui.notifications.notifs")
