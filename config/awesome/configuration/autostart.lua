@@ -35,6 +35,9 @@ local autostart_app = {
 	"mpd",
 	-- Playertctl support for mpd
 	"mpDris2",
+
+	-- dropbox
+	"dropbox"
 }
 
 for _, app in ipairs(autostart_app) do
