@@ -196,7 +196,7 @@ awful.keyboard.append_global_keybindings({
 
 	-- Screenshots
 	awful.key({}, "Print", function()
-		awful.spawn.easy_async_with_shell(apps.utils.full_screenshot, function() end)
+		awful.spawn("flameshot gui")
 	end, { description = "take a full screenshot", group = "hotkeys" }),
 
 	awful.key({ alt }, "Print", function()
